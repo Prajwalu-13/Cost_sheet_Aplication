@@ -214,7 +214,7 @@ class _SecondScreenWidgetState extends State<SecondScreenWidget> {
                           controller: textController3,
                           autofocus: true,
                           obscureText: false,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             hintText: 'Cost ',
                             // hintStyle: FlutterFlowTheme.of(context).bodyText2,
                             enabledBorder: UnderlineInputBorder(
@@ -222,7 +222,7 @@ class _SecondScreenWidgetState extends State<SecondScreenWidget> {
                                 color: Color(0x00000000),
                                 width: 1,
                               ),
-                              borderRadius: const BorderRadius.only(
+                              borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(4.0),
                                 topRight: Radius.circular(4.0),
                               ),
@@ -232,7 +232,7 @@ class _SecondScreenWidgetState extends State<SecondScreenWidget> {
                                 color: Color(0x00000000),
                                 width: 1,
                               ),
-                              borderRadius: const BorderRadius.only(
+                              borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(4.0),
                                 topRight: Radius.circular(4.0),
                               ),
