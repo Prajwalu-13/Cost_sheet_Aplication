@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cost_application/HomePage.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:cost_application/Result.dart';
 import 'package:cost_application/Result.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'StateSelection.dart';
 import 'firebase_options.dart';
 import 'main.dart';
 
@@ -22,7 +24,7 @@ class Appone extends StatelessWidget {
       {
         // '/': (context) =>  MyAppy(),
         // When navigating to the "/second" route, build the SecondScreen widget.
-        '/respage': (context) =>  Result(),
+        //'/respage': (context) =>  StateSelection(), //Result(),
       },
     );
   }
@@ -45,6 +47,9 @@ class _MyAppyState extends State<MyAppy> {
   String? _previousValue8;
   String? _previousValue9;
   String? _previousValue10;
+  String? _previousValue11;
+  String? _previousValue12;
+
 
 
 
@@ -78,6 +83,8 @@ class _MyAppyState extends State<MyAppy> {
   final textController8 = TextEditingController();
   final textController9 = TextEditingController();
   final textController10 = TextEditingController();
+  final textController11 = TextEditingController();
+  final textController12 = TextEditingController();
   CollectionReference users =
   FirebaseFirestore.instance.collection('CostSheet');
   double Palm15ltr = 0, KGMustard15ltr = 0, Soya15ltr = 0, EMustard15ltr = 0;
@@ -132,7 +139,11 @@ class _MyAppyState extends State<MyAppy> {
       _previousValue10 = prefs.getString('previous_value10_');
       textController10.text = _previousValue10 ?? '';
 
+      _previousValue11 = prefs.getString('previous_value11_');
+      textController11.text = _previousValue11 ?? '';
 
+      _previousValue12 = prefs.getString('previous_value12_');
+      textController12.text = _previousValue12 ?? '';
     });
 
 
@@ -387,6 +398,55 @@ class _MyAppyState extends State<MyAppy> {
                                 _prefs.then((prefs) {
                                   prefs.setString(
                                       'previous_value5_', _previousValue5 ?? '');
+                                });
+                              },
+                              textAlign: TextAlign.center,
+                              textAlignVertical: TextAlignVertical.center,
+                              autofocus: true,
+                              obscureText: false,
+                              decoration: const InputDecoration(
+                                filled: true,
+                                fillColor: Color(0xFFFA9ED1),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(20),
+                                  ),
+                                ),
+                              ),
+                              // style: FlutterFlowTheme.of(context).bodyText1,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Secondary Expenses ',
+                            style: TextStyle(
+                              fontFamily: 'Roboto',
+                            ),
+                          ),
+                          SizedBox(
+                            width: 80,
+                            height: 40,
+                            child: TextFormField(
+                              controller: textController11,
+                              onChanged: (String? value) {
+                                setState(() {
+                                  _previousValue11 = value;
+                                });
+                                _prefs.then((prefs) {
+                                  prefs.setString(
+                                      'previous_value11_', _previousValue11 ?? '');
                                 });
                               },
                               textAlign: TextAlign.center,
@@ -669,7 +729,54 @@ class _MyAppyState extends State<MyAppy> {
                         ],
                       ),
                     ),
-
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Secondary Expenses ',
+                            style: TextStyle(
+                              fontFamily: 'Roboto',
+                            ),
+                          ),
+                          SizedBox(
+                            width: 80,
+                            height: 40,
+                            child: TextFormField(
+                              controller: textController12,
+                              onChanged: (String? value) {
+                                setState(() {
+                                  _previousValue12 = value;
+                                });
+                                _prefs.then((prefs) {
+                                  prefs.setString(
+                                      'previous_value12_', _previousValue12 ?? '');
+                                });
+                              },
+                              textAlign: TextAlign.center,
+                              textAlignVertical: TextAlignVertical.center,
+                              autofocus: true,
+                              obscureText: false,
+                              decoration: const InputDecoration(
+                                filled: true,
+                                fillColor: Color(0xFFFA9ED1),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(20),
+                                  ),
+                                ),
+                              ),
+                              // style: FlutterFlowTheme.of(context).bodyText1,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
 
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(250, 50, 20, 0),
@@ -693,7 +800,7 @@ class _MyAppyState extends State<MyAppy> {
                           loadingP = double.parse(textController9!.text);
                           mktP = double.parse(textController10!.text);
 
-                          Navigator.of(context).pushNamed('/respage');
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=> StateSelection()));
                         },
                         label: Container(
                             width: 130,

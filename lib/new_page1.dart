@@ -1,3 +1,4 @@
+import 'package:cost_application/HomePage.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -30,7 +31,7 @@ class newapp extends StatelessWidget {
 
       routes: {
 
-        '/putv': (context) => Appone(),
+        "/putv": (context) => Appone(),
       },
     );
   }
@@ -150,7 +151,7 @@ class _MyApp1State extends State<MyApp1> {
                   padding: const EdgeInsets.fromLTRB(15, 10, 0, 0),
                   // key: _formKey,
                   child: Text(
-                    'Enter  The Freight Rates For Mathura ',
+                    'Enter  The  Inputs ',
                     style: TextStyle(
                       fontFamily: 'Roboto',
                       fontSize: 20,
@@ -158,6 +159,8 @@ class _MyApp1State extends State<MyApp1> {
                     ),
                   ),
                 ),
+
+                // key: _formKey,
                 SizedBox(
                   height: 10,
                 ),
@@ -836,7 +839,6 @@ class _MyApp1State extends State<MyApp1> {
                             });
                           },
                           keyboardType: TextInputType.number,
-                          autofillHints: [AutofillHints.givenName],
                           textAlign: TextAlign.center,
                           textAlignVertical: TextAlignVertical.center,
                           autofocus: true,
@@ -881,7 +883,7 @@ class _MyApp1State extends State<MyApp1> {
                       frieghtHIM = double.parse(textController13.text);
                       frieghtJK = double.parse(textController14.text);
 
-                      Navigator.of(context).pushNamed('/putv');
+                      Navigator.of(context).pushNamed("/putv");
                     },
                     label: Container(
                         width: 130,

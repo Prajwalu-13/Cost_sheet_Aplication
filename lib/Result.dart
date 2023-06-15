@@ -1,3 +1,4 @@
+import 'package:cost_application/HomePage.dart';
 import 'package:cost_application/main.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/src/foundation/key.dart';
@@ -36,11 +37,16 @@ class _ResultState extends State<Result> {
     false,
     false,
     false,
+    false,
+    false,
+    false,
+    false,
+    false,
     false
   ];
   CollectionReference users =
       FirebaseFirestore.instance.collection('CostSheet');
-  List<double> rates = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0];
+  List<double> rates = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,0,0,0];
   double Palm15ltr = 0, KGMustard15ltr = 0, Soya15ltr = 0, EMustard15ltr = 0;
   double Palm15ltr_ = 0,
       KGMustard15ltr_ = 0,
@@ -56,6 +62,7 @@ class _ResultState extends State<Result> {
       EMustard1ltrPouch = 0;
   List<String> place = [
     'Uttar Pradesh',
+    'Ex-Plant'
     'Madhya Pradesh',
     'Orissa',
     'Jharkhand',
@@ -76,7 +83,7 @@ class _ResultState extends State<Result> {
 
     KGMustard15ltr = (KG_Mustard_input) / 10;
     KGMustard15ltr = (KGMustard15ltr + rates[getidx()]) * 15;
-    KGMustard15ltr = KGMustard15ltr + cartoon + packing +filling + loading;
+    KGMustard15ltr = KGMustard15ltr + cartoon + packing +filling + loading ;
     KGMustard15ltr = KGMustard15ltr + KGMustard15ltr * mkt / 100;
     KGMustard15ltr = KGMustard15ltr + KGMustard15ltr * 5 / 100;
 
@@ -134,9 +141,9 @@ class _ResultState extends State<Result> {
         rates[7] = frieghtCHH;
         rates[8] = frieghtWB;
         rates[9] = frieghtAS;
-        // rates[10] = frieghtUK;
-        // rates[11]= frieghtDEL;
-        // rates[12]= frieghtHIM;
+        rates[10] = frieghtEx;
+         rates[11]= frieghtDEL;
+         rates[12]= frieghtHIM;
         // rates[13]= frieghtJK;
 
         Palm15ltr_ = data['Palm15ltr']; // palm input
@@ -266,13 +273,7 @@ class _ResultState extends State<Result> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                Text(
-                  "Select State",
-                  style: TextStyle(
-                    fontWeight: FontWeight.w800,
-                    fontSize: 16,
-                  ),
-                ),
+
                 SwitchListTile(
                   value: chk[0],
                   onChanged: (newValue) => {
@@ -281,7 +282,21 @@ class _ResultState extends State<Result> {
                     })
                   },
                   title: Text(
-                    'Uttar Pradesh',
+                    ' Depot',
+                  ),
+                  tileColor: Color(0xFFF5F5F5),
+                  dense: false,
+                  controlAffinity: ListTileControlAffinity.trailing,
+                ),
+                SwitchListTile(
+                  value: chk[10],
+                  onChanged: (newValue) => {
+                    setState(() {
+                      setArr(10);
+                    })
+                  },
+                  title: Text(
+                    ' Direct',
                   ),
                   tileColor: Color(0xFFF5F5F5),
                   dense: false,
@@ -295,124 +310,124 @@ class _ResultState extends State<Result> {
                     })
                   },
                   title: Text(
-                    'Madhya Pradesh',
+                    ' Super Stockist ',
                   ),
                   tileColor: Color(0xFFF5F5F5),
                   dense: false,
                   controlAffinity: ListTileControlAffinity.trailing,
                 ),
-                SwitchListTile(
-                  value: chk[2],
-                  onChanged: (newValue) => {
-                    setState(() {
-                      setArr(2);
-                    })
-                  },
-                  title: Text(
-                    'Rajasthan',
-                  ),
-                  tileColor: Color(0xFFF5F5F5),
-                  dense: false,
-                  controlAffinity: ListTileControlAffinity.trailing,
-                ),
-                SwitchListTile(
-                  value: chk[3],
-                  onChanged: (newValue) => {
-                    setState(() {
-                      setArr(3);
-                    })
-                  },
-                  title: Text(
-                    'Haryana',
-                  ),
-                  tileColor: Color(0xFFF5F5F5),
-                  dense: false,
-                  controlAffinity: ListTileControlAffinity.trailing,
-                ),
-                SwitchListTile(
-                  value: chk[4],
-                  onChanged: (newValue) => {
-                    setState(() {
-                      setArr(4);
-                    })
-                  },
-                  title: Text(
-                    'Punjab',
-                  ),
-                  tileColor: Color(0xFFF5F5F5),
-                  dense: false,
-                  controlAffinity: ListTileControlAffinity.trailing,
-                ),
-                SwitchListTile(
-                  value: chk[5],
-                  onChanged: (newValue) => {
-                    setState(() {
-                      setArr(5);
-                    })
-                  },
-                  title: Text(
-                    'Orrisa',
-                  ),
-                  tileColor: Color(0xFFF5F5F5),
-                  dense: false,
-                  controlAffinity: ListTileControlAffinity.trailing,
-                ),
-                SwitchListTile(
-                  value: chk[6],
-                  onChanged: (newValue) => {
-                    setState(() {
-                      setArr(6);
-                    })
-                  },
-                  title: Text(
-                    'Jharkhand',
-                  ),
-                  tileColor: Color(0xFFF5F5F5),
-                  dense: false,
-                  controlAffinity: ListTileControlAffinity.trailing,
-                ),
-                SwitchListTile(
-                  value: chk[7],
-                  onChanged: (newValue) => {
-                    setState(() {
-                      setArr(7);
-                    })
-                  },
-                  title: Text(
-                    'Chhattisgarh',
-                  ),
-                  tileColor: Color(0xFFF5F5F5),
-                  dense: false,
-                  controlAffinity: ListTileControlAffinity.trailing,
-                ),
-                SwitchListTile(
-                  value: chk[8],
-                  onChanged: (newValue) => {
-                    setState(() {
-                      setArr(8);
-                    })
-                  },
-                  title: Text(
-                    'West Bengal',
-                  ),
-                  tileColor: Color(0xFFF5F5F5),
-                  dense: false,
-                  controlAffinity: ListTileControlAffinity.trailing,
-                ),
-                SwitchListTile(
-                  value: chk[9],
-                  onChanged: (newValue) => {
-                    setState(() {
-                      setArr(9);
-                    })
-                  },
-                  title: Text(
-                    'Assam',
-                  ),
-                  tileColor: Color(0xFFF5F5F5),
-                  dense: false,
-                  controlAffinity: ListTileControlAffinity.trailing,
-                ),
+                // SwitchListTile(
+                //   value: chk[2],
+                //   onChanged: (newValue) => {
+                //     setState(() {
+                //       setArr(2);
+                //     })
+                //   },
+                //   title: Text(
+                //     'Rajasthan',
+                //   ),
+                //   tileColor: Color(0xFFF5F5F5),
+                //   dense: false,
+                //   controlAffinity: ListTileControlAffinity.trailing,
+                // ),
+                // SwitchListTile(
+                //   value: chk[3],
+                //   onChanged: (newValue) => {
+                //     setState(() {
+                //       setArr(3);
+                //     })
+                //   },
+                //   title: Text(
+                //     'Haryana',
+                //   ),
+                //   tileColor: Color(0xFFF5F5F5),
+                //   dense: false,
+                //   controlAffinity: ListTileControlAffinity.trailing,
+                // ),
+                // SwitchListTile(
+                //   value: chk[4],
+                //   onChanged: (newValue) => {
+                //     setState(() {
+                //       setArr(4);
+                //     })
+                //   },
+                //   title: Text(
+                //     'Punjab',
+                //   ),
+                //   tileColor: Color(0xFFF5F5F5),
+                //   dense: false,
+                //   controlAffinity: ListTileControlAffinity.trailing,
+                // ),
+                // SwitchListTile(
+                //   value: chk[5],
+                //   onChanged: (newValue) => {
+                //     setState(() {
+                //       setArr(5);
+                //     })
+                //   },
+                //   title: Text(
+                //     'Orrisa',
+                //   ),
+                //   tileColor: Color(0xFFF5F5F5),
+                //   dense: false,
+                //   controlAffinity: ListTileControlAffinity.trailing,
+                // ),
+                // SwitchListTile(
+                //   value: chk[6],
+                //   onChanged: (newValue) => {
+                //     setState(() {
+                //       setArr(6);
+                //     })
+                //   },
+                //   title: Text(
+                //     'Jharkhand',
+                //   ),
+                //   tileColor: Color(0xFFF5F5F5),
+                //   dense: false,
+                //   controlAffinity: ListTileControlAffinity.trailing,
+                // ),
+                // SwitchListTile(
+                //   value: chk[7],
+                //   onChanged: (newValue) => {
+                //     setState(() {
+                //       setArr(7);
+                //     })
+                //   },
+                //   title: Text(
+                //     'Chhattisgarh',
+                //   ),
+                //   tileColor: Color(0xFFF5F5F5),
+                //   dense: false,
+                //   controlAffinity: ListTileControlAffinity.trailing,
+                // ),
+                // SwitchListTile(
+                //   value: chk[8],
+                //   onChanged: (newValue) => {
+                //     setState(() {
+                //       setArr(8);
+                //     })
+                //   },
+                //   title: Text(
+                //     'West Bengal',
+                //   ),
+                //   tileColor: Color(0xFFF5F5F5),
+                //   dense: false,
+                //   controlAffinity: ListTileControlAffinity.trailing,
+                // ),
+                // SwitchListTile(
+                //   value: chk[9],
+                //   onChanged: (newValue) => {
+                //     setState(() {
+                //       setArr(9);
+                //     })
+                //   },
+                //   title: Text(
+                //     'Assam',
+                //   ),
+                //   tileColor: Color(0xFFF5F5F5),
+                //   dense: false,
+                //   controlAffinity: ListTileControlAffinity.trailing,
+                // ),
                 // SwitchListTile(
                 //   value: chk[10],
                 //   onChanged: (newValue) => {
@@ -469,6 +484,8 @@ class _ResultState extends State<Result> {
                 //   dense: false,
                 //   controlAffinity: ListTileControlAffinity.trailing,
                 // ),
+
+
                 Screenshot(
                   controller: screenshotController,
                   child: Container(
@@ -494,7 +511,7 @@ class _ResultState extends State<Result> {
                                 SizedBox(width: 10),
                                 Expanded(
                                   child: Text(
-                                    "Rates on ${DateFormat('dd/MM/yyyy').format(DateTime.now())}}",
+                                    "Rates on ${DateFormat('dd/MM/yyyy').format(DateTime.now())}",
                                     style: TextStyle(
                                       fontWeight: FontWeight.w800,
                                       fontSize: 16,
@@ -648,7 +665,7 @@ class _ResultState extends State<Result> {
                     });
                   }),
                 )
-              ],
+              ], //children
             ),
           ),
         ),

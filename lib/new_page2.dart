@@ -146,6 +146,49 @@ class _MyApp2State extends State<MyApp2> {
                     ],
                   ),
                 ),
+
+                SizedBox(
+                  height: 10,
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Ex',
+                        style: TextStyle(
+                          fontFamily: 'Roboto',
+                        ),
+                      ),
+                      SizedBox(
+                        width: 80,
+                        height: 40,
+                        child: TextFormField(
+                          controller: textController1,
+                          textAlign: TextAlign.center,
+                          textAlignVertical: TextAlignVertical.center,
+                          autofocus: true,
+                          obscureText: false,
+                          decoration: const InputDecoration(
+                            filled: true,
+                            fillColor: Color(0xFF9EFAC7),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(20),
+                              ),
+                            ),
+                          ),
+                          // style: FlutterFlowTheme.of(context).bodyText1,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
+
+
                 SizedBox(
                   height: 10,
                 ),
